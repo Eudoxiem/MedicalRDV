@@ -33,6 +33,7 @@ public class Doctors  extends Users{
         super(name, firstName, address, email, password, birth, profilePicture, Role.DOCTOR);
         this.speciality=speciality;
         this.licenseNumber=licenseNumber;
+        
     }
 
 
