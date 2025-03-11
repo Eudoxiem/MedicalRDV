@@ -9,11 +9,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.Table;
 import lombok.Data;
+
+
 
 
 @Data
@@ -43,20 +46,26 @@ public class Users {
     @Column(nullable = false, name = "DateDeNaissance")
     private Date birth;
 
+    @Column(nullable = true, name = "PhotoProfil")
+    private String profilePicture;
+
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
+    @Column(name = "Role")
     private Role role;
 
-    public Users(String name, String firstName, String address, String email, String password, Date birth, Role role) {
+
+    public Users(String name, String firstName, String address, String email, String password, Date birth,
+            String profilePicture, Role role) {
         this.name = name;
         this.firstName = firstName;
         this.address = address;
         this.email = email;
         this.password = password;
         this.birth = birth;
+        this.profilePicture = profilePicture;
         this.role = role;
     }
-
 
     public Long getId() {
         return this.id;
@@ -114,12 +123,19 @@ public class Users {
         this.birth = birth;
     }
 
+    public String getProfilePicture() {
+        return this.profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     public Role getRole() {
         return this.role;
     }
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
+    }    
 }
