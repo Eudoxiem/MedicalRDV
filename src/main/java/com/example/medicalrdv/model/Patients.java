@@ -19,6 +19,7 @@ public class Patients extends Users {
     private String socialSecurityNumber;
     @Column(name = "Date&HeureEnregistrement")
     private Timestamp registrationTime;
+    
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Appointment> rendezVous;
