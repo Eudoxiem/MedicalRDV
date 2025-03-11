@@ -1,39 +1,33 @@
 package com.example.medicalrdv.model;
 
+
 import java.sql.Date;
 
+import javax.management.relation.Role;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 
 
 
 @Entity
+@Table(name = "Patients")
 public class Patients extends Users {
+    
+    @Column(nullable = false, name = "NuméroDeSecuriteSociale")
+    private String nss;
 
-    public Patients(String nom, String prénom, String edresse, String email, String password, Date dateNaiss) {
-        super(nom, prénom, edresse, email, password, dateNaiss);
-        //TODO Auto-generated constructor stub
+    
+    public Patients(String name, String firstName, String address, String email, String password, Date birth,
+            Role role) {
+        super(name, firstName, address, email, password, birth, role);
+        this.nss=nss;
     }
 
-    private String numeroSecuriteSociale;
-    private String dateNaissance;
+ 
+    
 
-
-    public String getNumeroSecuriteSociale() {
-        return this.numeroSecuriteSociale;
-    }
-
-    public void setNumeroSecuriteSociale(String numeroSecuriteSociale) {
-        this.numeroSecuriteSociale = numeroSecuriteSociale;
-    }
-
-    public String getDateNaissance() {
-        return this.dateNaissance;
-    }
-
-    public void setDateNaissance(String dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
-
+   
 }

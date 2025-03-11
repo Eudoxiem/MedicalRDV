@@ -2,34 +2,59 @@ package com.example.medicalrdv.model;
 
 import java.sql.Date;
 
+import javax.management.relation.Role;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name= "Utilisateurs")
 public class Users {
-      @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nom;
-    private String Prénom;
-    private String edresse;
+    @Column(nullable = false, name = "Nom")
+    private String name;
+
+    @Column(nullable = false, name = "Prénom")
+    private String firstName;
+
+    @Column(nullable = false, name = "Adresse")
+    private String address;
+
+    @Column(nullable = false, name = "E-mail", unique = true)
     private String email;
+
+    @Column(nullable = false, name = "MotDePasse")
     private String password;
-    private Date DateNaiss;
-    
-    public Users(String nom, String prénom, String edresse, String email, String password, Date dateNaiss) {
-        this.nom = nom;
-        Prénom = prénom;
-        this.edresse = edresse;
+
+    @Column(nullable = false, name = "DateDeNaissance")
+    private Date birth;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+
+    public Users(String name, String firstName, String address, String email, String password, Date birth, Role role) {
+        this.name = name;
+        this.firstName = firstName;
+        this.address = address;
         this.email = email;
         this.password = password;
-        DateNaiss = dateNaiss;
+        this.birth = birth;
+        this.role = role;
     }
 
 
@@ -41,28 +66,28 @@ public class Users {
         this.id = id;
     }
 
-    public String getNom() {
-        return this.nom;
+    public String getName() {
+        return this.name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPrénom() {
-        return this.Prénom;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public void setPrénom(String Prénom) {
-        this.Prénom = Prénom;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getEdresse() {
-        return this.edresse;
+    public String getAddress() {
+        return this.address;
     }
 
-    public void setEdresse(String edresse) {
-        this.edresse = edresse;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getEmail() {
@@ -81,13 +106,20 @@ public class Users {
         this.password = password;
     }
 
-    public Date getDateNaiss() {
-        return this.DateNaiss;
+    public Date getBirth() {
+        return this.birth;
     }
 
-    public void setDateNaiss(Date DateNaiss) {
-        this.DateNaiss = DateNaiss;
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
-    
+
+    public Role getRole() {
+        return this.role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
 }
